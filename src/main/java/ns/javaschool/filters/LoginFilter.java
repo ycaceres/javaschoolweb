@@ -22,7 +22,7 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         User user = (User) req.getSession().getAttribute("user");
-        if(user != null) {
+        if(user != null || "/index.jsp".equals(req.getServletPath())) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
             ((HttpServletResponse) servletResponse).sendRedirect("/javaschool-web");

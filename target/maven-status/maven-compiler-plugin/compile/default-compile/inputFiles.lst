@@ -1,0 +1,6 @@
+/Users/pruiz/repos/javaschoolweb/src/main/java/ns/javaschool/domain/User.java
+/Users/pruiz/repos/javaschoolweb/src/main/java/ns/javaschool/controller/LoginController.java
+/Users/pruiz/repos/javaschoolweb/src/main/java/ns/javaschool/dao/LoginDAO.java
+/Users/pruiz/repos/javaschoolweb/src/main/java/ns/javaschool/servlets/DashboardServlet.java
+/Users/pruiz/repos/javaschoolweb/src/main/java/ns/javaschool/servlets/LoginServlet.java
+/Users/pruiz/repos/javaschoolweb/src/main/java/ns/javaschool/filters/LoginFilter.java

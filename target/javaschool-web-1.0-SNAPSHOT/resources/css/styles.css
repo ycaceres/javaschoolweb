@@ -1,0 +1,28 @@
+body {
+    font-family: 'Helvetica';
+}
+.wrapper-form {
+    width: 500px;
+    margin: auto;
+}
+
+.wrapper-form .group {
+    display: block;
+    margin: 10px 0px;
+}
+
+.wrapper-form .group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.wrapper-form .group input {
+    padding: 10px;
+    outline: none;
+    width: 100%;
+}
+
+.wrapper-form .group .btn {
+    padding: 20px 15px;
+    font-size: 18px;
+}

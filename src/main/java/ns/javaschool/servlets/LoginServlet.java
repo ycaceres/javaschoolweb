@@ -38,9 +38,10 @@ public class LoginServlet extends HttpServlet {
 
         if(controller.canLogin(name, pass)){
             req.getSession().setAttribute("user", controller.load(name));
+            resp.sendRedirect("/javaschool-web/dashboard.jsp");
+        } else {
+            resp.sendRedirect("/javaschool-web/login");
         }
-
-        resp.sendRedirect("/javaschool-web/dashboard");
     }
 
 

@@ -24,30 +24,24 @@ public class DashboardServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         if (req.getParameter("logout") != null) {
             req.getSession().invalidate();
             resp.sendRedirect("/javaschool-web");
-        } else {
-            printPageHeader(req, resp);
-            printPageBody(req, resp);
+        }else {
+            String action = req.getParameter("action");
+            switch (action) {
+                case "add":
+                    resp.sendRedirect("/javaschool-web/userform.jsp");
+                    break;
+                case "save":
+                    String name = req.getParameter("name");
+                    String user = req.getParameter("user");
+                    String password = req.getParameter("password");
+                    LoginController.getInstance().save(new User(name, user, password));
+                default:
+                    resp.sendRedirect("/javaschool-web/dashboard.jsp");
+            }
         }
-    }
-
-    private void printPageBody(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        List<User> users = controller.loadAll();
-        PrintWriter page = resp.getWriter();
-        for (User u : users) {
-            page.print(u + "<br/>");
-        }
-    }
-
-    private void printPageHeader(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        User user = (User) req.getSession().getAttribute("user");
-        resp.setContentType("text/html");
-        PrintWriter page = resp.getWriter();
-        String welcomeMessage = String.format("Welcome %s...", user);
-        page.print(welcomeMessage);
-        page.print(" [<a href='/javaschool-web/dashboard?logout'>logout</a>]");
-        page.print("<br/> <br/>");
     }
 }
