@@ -1,7 +1,5 @@
-<%@ page import="ns.javaschool.domain.User" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="ns.javaschool.controller.LoginController" %><%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--
   Created by IntelliJ IDEA.
   User: pruiz
   Date: 4/27/18
@@ -9,7 +7,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>--%>
 
 <html>
 <head>
@@ -20,16 +17,12 @@
     <div class="wrapper-form">
         <jsp:include page="header.jsp"></jsp:include>
         <ul>
-        <%
-            List<User> users = LoginController.getInstance().loadAll();
-            for (User u : users) {
-                out.println("<li>" + u + "<br/></li>");
-            }
-        %>
-        <%--<c:forEach var = "i" begin = "0" end = "5">--%>
-            <%--Item <c:out value = "${i}"/><p>--%>
-        <%--</c:forEach>--%>
-       </ul>
+
+            <c:forEach items="${sessionScope.get('userList')}" var="u">
+                <li>
+                    <c:out value="${u}"/>
+                </li>
+            </c:forEach>
 
         <form method="post" action="dashboard" >
             <input type="submit" value="Add User"/>

@@ -40,6 +40,7 @@ public class DashboardServlet extends HttpServlet {
                     String password = req.getParameter("password");
                     LoginController.getInstance().save(new User(name, user, password));
                 default:
+                    req.getSession().setAttribute("userList", LoginController.getInstance().loadAll());
                     resp.sendRedirect("/javaschool-web/dashboard.jsp");
             }
         }
