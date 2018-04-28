@@ -1,6 +1,0 @@
-ns/javaschool/servlets/LoginServlet.class
-ns/javaschool/filters/LoginFilter.class
-ns/javaschool/servlets/DashboardServlet.class
-ns/javaschool/dao/LoginDAO.class
-ns/javaschool/controller/LoginController.class
-ns/javaschool/domain/User.class
