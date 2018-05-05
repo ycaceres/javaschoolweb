@@ -1,5 +1,10 @@
 body {
-    font-family: 'Helvetica';
+    font-family: 'Helvetica', serif;
+    font-size: 16px;
+}
+
+input {
+    font-size: 16px;
 }
 .wrapper-form {
     width: 500px;
@@ -8,7 +13,7 @@ body {
 
 .wrapper-form .group {
     display: block;
-    margin: 10px 0px;
+    margin: 10px 0;
 }
 
 .wrapper-form .group label {
@@ -25,4 +30,8 @@ body {
 .wrapper-form .group .btn {
     padding: 20px 15px;
     font-size: 18px;
+}
+
+li {
+    padding: 5px;
 }

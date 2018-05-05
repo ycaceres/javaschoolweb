@@ -16,8 +16,12 @@
             </c:forEach>
 
             <form method="post" action="toDoList">
-                <input type="text" name="item" value="" placeholder="To Do...">
-                <input type="submit" value="Add item"/>
+                <div class="group">
+                    <input type="text" name="item" value="" placeholder="To Do...">
+                </div>
+                <div class="group">
+                    <input class="btn" type="submit" value="Add item"/>
+                </div>
                 <input type="hidden" name="action" value="add"/>
             </form>
     </div>
