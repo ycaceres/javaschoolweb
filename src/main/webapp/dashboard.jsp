@@ -28,6 +28,7 @@
             <input type="submit" value="Add User"/>
             <input type="hidden" name="action" value="add"/>
         </form>
+        <a href="/javaschool-web/toDoList.jsp">My To Do List</a>
     </div>
 
 </body>

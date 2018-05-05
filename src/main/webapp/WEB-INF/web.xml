@@ -38,6 +38,16 @@
         <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ToDoListServlet</servlet-name>
+        <servlet-class>ns.javaschool.servlets.ToDoListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ToDoListServlet</servlet-name>
+        <url-pattern>/toDoList</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>ns.javaschool.filters.LoginFilter</filter-class>
