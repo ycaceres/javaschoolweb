@@ -2,6 +2,7 @@ package ns.javaschool.controller;
 
 import ns.javaschool.dao.ToDoItemDAO;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ToDoListController {

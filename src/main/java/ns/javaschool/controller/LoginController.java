@@ -3,12 +3,12 @@ package ns.javaschool.controller;
 
 import java.util.List;
 
-import ns.javaschool.dao.LoginDAO;
+import ns.javaschool.service.LoginService;
 import ns.javaschool.domain.User;
 
 public class LoginController {
 
-    private LoginDAO dao;
+    private LoginService loginService;
 
     private static LoginController instance;
 
@@ -20,30 +20,26 @@ public class LoginController {
     }
 
     private LoginController(){
-        dao = LoginDAO.getInstance();
-    }
-
-    public User load(String userName) {
-        return this.dao.load(userName);
+        loginService = LoginService.getInstance();
     }
 
     public List<User> loadAll() {
-        return this.dao.loadAll();
+        return this.loginService.loadAll();
     }
 
     public void save(User user) {
-        this.dao.save(user);
+        this.loginService.save(user);
     }
 
     public void delete(User user) {
-        this.dao.delete(user);
+        this.loginService.delete(user);
     }
 
     public void update(User user) {
-        this.dao.update(user);
+        this.loginService.update(user);
     }
 
-    public boolean canLogin(String user, String password) {
-        return dao.canLogin(user, password);
+    public User canLogin(String user, String password) {
+        return loginService.canLogin(user, password);
     }
 }

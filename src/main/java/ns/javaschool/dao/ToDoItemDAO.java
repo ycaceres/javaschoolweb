@@ -1,10 +1,13 @@
 package ns.javaschool.dao;
 
-import com.mysql.jdbc.Connection;
+import ns.javaschool.conf.DataBaseManager;
 
-import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,16 +15,8 @@ public class ToDoItemDAO {
 
     private static ToDoItemDAO instance;
 
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/javaschool";
-
-    static final String USER = "username";
-    static final String PASS = "password";
-
-    private Connection connection;
-    private Statement statement;
-
-    private static final String fileName = "resources/to_do_items.txt";
+    private static final String CREATE_TABLE = "DROP TABLE IF EXISTS to_do_items; CREATE TABLE to_do_items ( id INT PRIMARY KEY AUTO_INCREMENT, description VARCHAR(100), is_done BOOLEAN)";
+    private static final String INSERT = "INSERT INTO to_do_items(description) VALUES (?)";
 
     private ToDoItemDAO() {
         init();
@@ -29,9 +24,15 @@ public class ToDoItemDAO {
 
     private void init() {
         try {
-            Class.forName(JDBC_DRIVER);
-            connection = (Connection) DriverManager.getConnection(DB_URL, USER, PASS);
-        } catch (ClassNotFoundException | SQLException e) {
+            Connection connection = DataBaseManager.getConnection();
+            PreparedStatement query = connection.prepareStatement(CREATE_TABLE);
+            query.executeUpdate();
+            query = connection.prepareStatement(INSERT);
+            query.setString(1, "Ir a la tienda.");
+            query.executeUpdate();
+            query.close();
+            connection.close();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -43,12 +44,33 @@ public class ToDoItemDAO {
         return instance;
     }
 
-    public List<String> getItems() {
-        //ToDo implement this
-        return Collections.emptyList();
+    public List<String> getItems()  {
+        List<String> items = new ArrayList<>();
+        try{
+            Connection connection = DataBaseManager.getConnection();
+            final Statement statement = connection.createStatement();
+            final ResultSet resultSet = statement.executeQuery("SELECT * FROM TO_DO_ITEMS");
+            while(resultSet.next()){
+                items.add(resultSet.getString("description"));
+            }
+            connection.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+            items = Collections.EMPTY_LIST;
+        }
+        return items;
     }
 
-    public void addItem(String item) {
-        //ToDo implement this
+    public void addItem(String item)  {
+        try{
+            Connection connection = DataBaseManager.getConnection();
+            final PreparedStatement statement = connection.prepareStatement(INSERT);
+            statement.setString(1,item);
+            statement.executeUpdate();
+            statement.close();
+            connection.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 }
