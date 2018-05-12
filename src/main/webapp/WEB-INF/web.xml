@@ -48,6 +48,16 @@
         <url-pattern>/toDoList</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>ApiServlet</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ApiServlet</servlet-name>
+        <servlet-class>ns.javaschool.servlets.ApiServlet</servlet-class>
+    </servlet>
+
     <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>ns.javaschool.filters.LoginFilter</filter-class>
@@ -56,6 +66,16 @@
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>*.jsp</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>ApiFilter</filter-name>
+        <filter-class>ns.javaschool.filters.ApiFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>ApiFilter</filter-name>
+        <url-pattern>/api/*</url-pattern>
     </filter-mapping>
 
 </web-app>

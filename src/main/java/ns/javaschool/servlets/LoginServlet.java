@@ -1,17 +1,16 @@
 package ns.javaschool.servlets;
 
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import ns.javaschool.controller.LoginController;
+import ns.javaschool.controller.ToDoListController;
+import ns.javaschool.domain.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import ns.javaschool.controller.LoginController;
-import ns.javaschool.controller.ToDoListController;
-import ns.javaschool.domain.User;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class LoginServlet extends HttpServlet {
@@ -24,12 +23,7 @@ public class LoginServlet extends HttpServlet {
         Logger.getAnonymousLogger().log(Level.INFO, "Initializing JavaSchool Application...");
         loginController = LoginController.getInstance();
         toDoListController = ToDoListController.getInstance();
-        loginController.save(new User("Perla Ruiz", "pruiz", "c690370286a1e8c9de5fb1ed2a2e0f3f"));
-        loginController
-                .save(new User("Omar Bautista", "obautista", "70153a7dac38814f2f9545a6fe82d7ba"));
-        loginController
-                .save(new User("Yander Caceres", "ycaceres", "78ea905bd1b100d9d77324c6f2f7be66"));
-    }
+}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

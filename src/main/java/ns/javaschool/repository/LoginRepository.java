@@ -1,23 +1,23 @@
-package ns.javaschool.service;
+package ns.javaschool.repository;
 
 import ns.javaschool.dao.UserDAO;
 import ns.javaschool.domain.User;
 
 import java.util.List;
 
-public class LoginService {
+public class LoginRepository {
 
-    private static LoginService instance;
+    private static LoginRepository instance;
     private static UserDAO userDAO;
 
-    public static LoginService getInstance() {
+    public static LoginRepository getInstance() {
         if (instance == null) {
-            instance = new LoginService();
+            instance = new LoginRepository();
         }
         return instance;
     }
 
-    private LoginService() {
+    private LoginRepository() {
         userDAO = UserDAO.getInstance();
     }
 
