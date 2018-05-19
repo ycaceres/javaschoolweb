@@ -11,7 +11,7 @@
         <ul>
             <c:forEach items="${sessionScope.get('toDoListItems')}" var="item">
                 <li>
-                    <c:out value="${item}"/>
+                    <c:out value="${item.description}"/>
                 </li>
             </c:forEach>
 

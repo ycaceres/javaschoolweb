@@ -23,7 +23,15 @@ public class LoginServlet extends HttpServlet {
         Logger.getAnonymousLogger().log(Level.INFO, "Initializing JavaSchool Application...");
         loginController = LoginController.getInstance();
         toDoListController = ToDoListController.getInstance();
-}
+
+        if(loginController.loadAll() == null || loginController.loadAll().size() == 0){
+            loginController.save(new User("Perla Ruiz", "pruiz", "c690370286a1e8c9de5fb1ed2a2e0f3f"));
+            loginController
+                    .save(new User("Omar Bautista", "obautista", "70153a7dac38814f2f9545a6fe82d7ba"));
+            loginController
+                    .save(new User("Yander Caceres", "ycaceres", "78ea905bd1b100d9d77324c6f2f7be66"));
+        }
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

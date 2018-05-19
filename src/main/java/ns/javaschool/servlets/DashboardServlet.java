@@ -1,16 +1,13 @@
 package ns.javaschool.servlets;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+import ns.javaschool.controller.LoginController;
+import ns.javaschool.domain.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import ns.javaschool.controller.LoginController;
-import ns.javaschool.domain.User;
+import java.io.IOException;
 
 
 public class DashboardServlet extends HttpServlet {

@@ -1,13 +1,13 @@
 package ns.javaschool.controller;
 
-import ns.javaschool.dao.ToDoItemDAO;
+import ns.javaschool.repository.ToDoItemRepository;
+import ns.javaschool.domain.ToDoItem;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class ToDoListController {
 
-    private ToDoItemDAO toDoItemDAO;
+    private ToDoItemRepository toDoItemRepository;
 
     private static ToDoListController instance;
 
@@ -19,14 +19,14 @@ public class ToDoListController {
     }
 
     private ToDoListController() {
-        this.toDoItemDAO = ToDoItemDAO.getInstance();
+        this.toDoItemRepository = ToDoItemRepository.getInstance();
     }
 
-    public List<String> getToDoItems() {
-        return toDoItemDAO.getItems();
+    public List<ToDoItem> getToDoItems() {
+        return toDoItemRepository.getItems();
     }
 
     public void addToDoItem(String item) {
-        toDoItemDAO.addItem(item);
+        toDoItemRepository.addItem(item);
     }
 }

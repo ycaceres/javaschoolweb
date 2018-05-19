@@ -2,7 +2,7 @@ package ns.javaschool.controller;
 
 
 import ns.javaschool.domain.User;
-import ns.javaschool.repository.LoginRepository;
+import ns.javaschool.service.LoginService;
 import ns.javaschool.service.TokenService;
 
 import javax.servlet.ServletOutputStream;
@@ -13,50 +13,43 @@ import java.util.List;
 
 public class LoginController {
 
-    private LoginRepository loginRepository;
+    private LoginService loginService;
 
     private static LoginController instance;
 
-    public static LoginController getInstance() {
-        if (instance == null) {
+    public static LoginController getInstance(){
+        if(instance == null) {
             instance = new LoginController();
-            //this ugliness is for practical purposes of the class.
-            instance.save(new User("Perla Ruiz", "pruiz", "c690370286a1e8c9de5fb1ed2a2e0f3f"));
-            instance
-                    .save(new User("Omar Bautista", "obautista", "70153a7dac38814f2f9545a6fe82d7ba"));
-            instance
-                    .save(new User("Yander Caceres", "ycaceres", "78ea905bd1b100d9d77324c6f2f7be66"));
-
         }
         return instance;
     }
 
-    private LoginController() {
-        loginRepository = LoginRepository.getInstance();
+    private LoginController(){
+        loginService = LoginService.getInstance();
     }
 
     public List<User> loadAll() {
-        return this.loginRepository.loadAll();
+        return loginService.loadAll();
     }
 
     public void save(User user) {
-        this.loginRepository.save(user);
+        loginService.save(user);
     }
 
-    public void delete(User user) {
-        this.loginRepository.delete(user);
+    public void delete(Long id) {
+        loginService.delete(id);
     }
 
     public void update(User user) {
-        this.loginRepository.update(user);
+        loginService.update(user);
     }
 
     public User canLogin(String user, String password) {
-        return loginRepository.canLogin(user, password);
+        return loginService.canLogin(user, password);
     }
 
     public void canLoginApi(String name, String pass, HttpSession session, HttpServletResponse resp) throws IOException {
-        User user = loginRepository.canLogin(name, pass);
+        User user = loginService.canLogin(name, pass);
         ServletOutputStream sout = resp.getOutputStream();
         if (user != null) {
             String token = TokenService.generateToken();
